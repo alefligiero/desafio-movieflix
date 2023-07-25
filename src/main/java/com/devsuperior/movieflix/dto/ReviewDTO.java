@@ -3,6 +3,7 @@ package com.devsuperior.movieflix.dto;
 import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.entities.Review;
 import com.devsuperior.movieflix.entities.User;
+import com.devsuperior.movieflix.projections.ReviewProjection;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -40,7 +41,16 @@ public class ReviewDTO {
 		this.userEmail = entity.getUser().getEmail();
 	}
 
-	public Long getId() {
+    public ReviewDTO(ReviewProjection projection) {
+		id = projection.getId();
+		text = projection.getText();
+		movieId = projection.getMovieId();
+		userId = projection.getUserId();
+		userName = projection.getUserName();
+		userEmail = projection.getUserEmail();
+    }
+
+    public Long getId() {
 		return id;
 	}
 

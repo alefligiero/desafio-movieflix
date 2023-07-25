@@ -3,6 +3,7 @@ package com.devsuperior.movieflix.services;
 import com.devsuperior.movieflix.dto.ReviewDTO;
 import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.entities.Review;
+import com.devsuperior.movieflix.projections.ReviewProjection;
 import com.devsuperior.movieflix.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,7 @@ public class ReviewService {
 
 
     public List<ReviewDTO> findReviews(Long id) {
-        List<Review> list = reviewRepository.searchReviewsByMovieId(id);
+        List<ReviewProjection> list = reviewRepository.searchReviewsByMovieId(id);
         return list.stream().map(ReviewDTO::new).toList();
-
     }
 }
